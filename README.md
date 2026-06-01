@@ -22,7 +22,7 @@ CI/CD（GitHub Actions）・自動リリース（release-please）・Linter・Cl
 ```bash
 gh repo create beginerbeginer/my-app \
   --template beginerbeginer/vue-ts-starter \
-  --public \
+  --private \
   --clone
 cd my-app
 ```
@@ -35,21 +35,7 @@ bash init.sh
 
 プレースホルダー置換・npm install・初期コミット・push を自動で行います。
 
-### 3. RELEASE_TOKEN を設定（〜2 分）
-
-Dashlane から Fine-grained PAT を取得して設定します。
-
-```bash
-gh secret set RELEASE_TOKEN
-```
-
-PAT に必要な権限:
-- **Contents**: Read and write
-- **Pull requests**: Read and write
-
-> PAT は 60 日で期限切れになります。期限切れ前に再生成してください。
-
-### 4. GitHub Pages を有効化（〜30 秒）
+### 3. GitHub Pages を有効化（〜30 秒）
 
 リポジトリの Settings → Pages → Source: **GitHub Actions** に設定。
 

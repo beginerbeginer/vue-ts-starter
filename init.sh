@@ -8,6 +8,18 @@ PROJECT=$(basename "$(git rev-parse --show-toplevel)")
 echo "プロジェクト名: $PROJECT"
 echo ""
 
+echo "公開設定を選んでください:"
+echo "  1) public"
+echo "  2) private"
+read -rp "選択 [1/2, デフォルト: 1]: " vis_choice
+VISIBILITY="public"
+if [[ "${vis_choice}" == "2" ]]; then
+  VISIBILITY="private"
+fi
+gh repo edit --visibility "$VISIBILITY"
+echo "✅ visibility を $VISIBILITY に設定しました"
+echo ""
+
 # PROJECT_NAME プレースホルダーを実際の名前に置換
 sed -i '' "s/PROJECT_NAME/$PROJECT/g" \
   package.json \
@@ -33,13 +45,8 @@ echo "✅ 初期コミット完了"
 echo ""
 echo "📋 残り手順（手動）:"
 echo ""
-echo "  1. RELEASE_TOKEN（PAT）を設定"
-echo "     - Dashlane から Fine-grained PAT を取得"
-echo "       権限: Contents(read/write) + Pull requests(read/write)"
-echo "     - gh secret set RELEASE_TOKEN"
-echo ""
-echo "  2. GitHub Pages を有効化"
-echo "     https://github.com/beginerbeginer/$PROJECT/settings/pages"
-echo "     Source: GitHub Actions"
+echo "  GitHub Pages を有効化"
+echo "  https://github.com/beginerbeginer/$PROJECT/settings/pages"
+echo "  Source: GitHub Actions"
 echo ""
 echo "  完了後、main への push で CI・CD・自動リリースが稼働します 🚀"
