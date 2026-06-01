@@ -22,7 +22,7 @@ CI/CD（GitHub Actions）・自動リリース（release-please）・Linter・Cl
 ```bash
 gh repo create beginerbeginer/my-app \
   --template beginerbeginer/vue-ts-starter \
-  --public \
+  --private \
   --clone
 cd my-app
 ```
